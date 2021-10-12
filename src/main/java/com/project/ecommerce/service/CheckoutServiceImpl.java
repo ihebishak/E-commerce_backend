@@ -19,8 +19,8 @@ public class CheckoutServiceImpl implements CheckoutService{
 
     public CheckoutServiceImpl(CustomerRepository customerRepository){
         this.customerRepository=customerRepository;
-
     }
+
     @Override
     @Transactional
     public PurchaseResponse placeOrder(Purchase purchase) {
@@ -30,7 +30,6 @@ public class CheckoutServiceImpl implements CheckoutService{
         //generate tracking number
         String orderTrackingNumber=generateOrderTrackingNumber();
         order.setOrderTrackingNumber(orderTrackingNumber);
-
 
         //populate order with orderItems
         Set<OrderItem> orderItems=purchase.getOrderItems();
@@ -52,8 +51,6 @@ public class CheckoutServiceImpl implements CheckoutService{
     }
 
     private String generateOrderTrackingNumber(){
-
-
         return UUID.randomUUID().toString();
     }
 }

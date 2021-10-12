@@ -1,10 +1,8 @@
 package com.project.ecommerce.entity;
-
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -55,10 +53,6 @@ public class Order {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="billing_address_id",referencedColumnName = "id")
     private Address billingAddress;
-
-
-
-
 
     public void add(OrderItem item){
         if(item != null){

@@ -15,6 +15,7 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
+
     @Column(name="image_url")
     private String imageUrl;
 
