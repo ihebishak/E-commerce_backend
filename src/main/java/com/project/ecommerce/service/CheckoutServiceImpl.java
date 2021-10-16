@@ -32,15 +32,25 @@ public class CheckoutServiceImpl implements CheckoutService{
         order.setOrderTrackingNumber(orderTrackingNumber);
 
         //populate order with orderItems
-        Set<OrderItem> orderItems=purchase.getOrderItems();
-        orderItems.forEach(item->order.add(item));
+        Set<OrderItem> orderItems = purchase.getOrderItems();
+        orderItems.forEach(item -> order.add(item));
 
         //populate order with billingAddress and shippingAddress
         order.setBillingAddress(purchase.getBillingAddress());
         order.setShippingAddress(purchase.getShippingAddress());
 
         //populate customer with order
-        Customer customer= purchase.getCustomer();
+        Customer customer = purchase.getCustomer();
+
+        //check if this is an existing customer
+        String theEmail = customer.getEmail();
+
+        Customer customerFromDB = customerRepository.findByEmail(theEmail);
+
+        if (customerFromDB != null) {
+            customer = customerFromDB;
+        }
+
         customer.add(order);
 
         //save to the database
